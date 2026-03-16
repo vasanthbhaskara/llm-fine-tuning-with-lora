@@ -1,4 +1,4 @@
-# LLM Fine-Tuning with LoRA
+<img width="801" height="658" alt="image" src="https://github.com/user-attachments/assets/62093737-a90a-4f9a-9355-7cd4ea5b48a1" /># LLM Fine-Tuning with LoRA
 
 Parameter-efficient fine-tuning of a large language model using **LoRA (Low-Rank Adaptation)**. This project adapts the pretrained **LiquidAI LFM2-1.2B** causal language model into a style-aware conversational chatbot while training only a very small subset of parameters.
 
@@ -176,9 +176,40 @@ The judge LLM receives:
 - the generated response
 - instructions to score style adherence and explain its reasoning
 
-Suggested judge model:
+Judge model:
 
 - **Gemini 2.5 Flash** via OpenRouter
+
+- <img width="801" height="658" alt="image" src="https://github.com/user-attachments/assets/16371308-9033-483e-b389-61061fcca79a" />
+
+The evaluation compares three distributions of scores produced by the **Gemini 2.5 Flash judge model**:
+
+* **Base** – responses from the pretrained model before fine-tuning
+* **Generated** – responses produced by the LoRA fine-tuned model
+* **Style** – ground truth dataset responses written in Yoda style
+
+### Observations
+
+**1. Base Model (Blue)**
+Scores are heavily concentrated near **0.0–0.05**, indicating that the pretrained model rarely produces Yoda-style responses. This confirms that the base model does not naturally follow the target stylistic pattern.
+
+**2. Generated Responses (Orange)**
+Scores shift significantly toward **mid-range values (≈0.2–0.7)**. This indicates that the LoRA fine-tuned model partially learns the stylistic transformation, producing outputs that exhibit some Yoda-like structure.
+
+**3. Ground Truth Style Data (Green)**
+Scores cluster around **high values (≈0.7–0.9)**, representing the expected stylistic behavior of authentic Yoda-style text.
+
+### Key Insight
+
+Fine-tuning with **LoRA on ~2048 examples successfully moves the model distribution away from the base model and toward the target style distribution**, demonstrating measurable stylistic adaptation.
+
+However, the generated responses still fall short of the ground truth distribution, suggesting that:
+
+* the model has **learned partial stylistic patterns**, but
+* additional data or training steps would likely improve alignment with the target style.
+
+This evaluation confirms that **parameter-efficient fine-tuning can meaningfully alter model behavior even with a small dataset**, while preserving the base model’s underlying language capability.
+
 
 ## Key Libraries
 
