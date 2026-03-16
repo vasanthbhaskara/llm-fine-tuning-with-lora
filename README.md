@@ -1,4 +1,4 @@
-<img width="801" height="658" alt="image" src="https://github.com/user-attachments/assets/62093737-a90a-4f9a-9355-7cd4ea5b48a1" /># LLM Fine-Tuning with LoRA
+# LLM Fine-Tuning with LoRA
 
 Parameter-efficient fine-tuning of a large language model using **LoRA (Low-Rank Adaptation)**. This project adapts the pretrained **LiquidAI LFM2-1.2B** causal language model into a style-aware conversational chatbot while training only a very small subset of parameters.
 
@@ -176,11 +176,9 @@ The judge LLM receives:
 - the generated response
 - instructions to score style adherence and explain its reasoning
 
-Judge model:
+Judge model: **Gemini 2.5 Flash** via OpenRouter
 
-- **Gemini 2.5 Flash** via OpenRouter
-
-- <img width="801" height="658" alt="image" src="https://github.com/user-attachments/assets/16371308-9033-483e-b389-61061fcca79a" />
+<img width="600" height="430" alt="image" src="https://github.com/user-attachments/assets/16371308-9033-483e-b389-61061fcca79a" />
 
 The evaluation compares three distributions of scores produced by the **Gemini 2.5 Flash judge model**:
 
